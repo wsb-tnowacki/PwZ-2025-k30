@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layout.template')
 @section('tytul','O nas')
 @section('podtytul', 'Strona o nas')
 @section('tresc')
