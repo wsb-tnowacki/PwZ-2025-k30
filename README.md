@@ -7,7 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<p>
+## Instrukcja do postępowania z repozytorium
+
 Do instalacji należy użyć polecenia wykonanego w katalogu np. C:\xampp\htdocs :
 
 git clone <adres_URL> 
@@ -29,7 +30,7 @@ npm install
 Do ściągnięcia nowszych wersji
 
 git pull
-</p>
+
 
 ## About Laravel
 
