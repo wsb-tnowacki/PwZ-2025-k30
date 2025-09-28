@@ -3,7 +3,14 @@
 @section('podtytul', 'Strona o nas')
 @section('tresc')
     <div>
-        Treść dla strony o nas <br>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas repellat iste placeat, deserunt itaque esse eveniet dicta vitae quidem aliquid in quam maxime. Nesciunt alias consequuntur numquam, blanditiis esse voluptate.
+        Treść dla strony o nas <br>
+        @isset($zadania)
+        <ol>
+            @foreach ($zadania as $zadanie)
+                <li>{{ $zadanie }}</li>
+            @endforeach
+        </ol>            
+        @endisset
     </div>
 @endsection
 
