@@ -27,15 +27,18 @@ use Illuminate\Support\Facades\Route;
 Route::controller(OgolneController::class)->group(function(){
     Route::get('/', 'start')->name('ogolne.start');
     Route::get('/kontakt', 'kontakt')->name('ogolne.kontakt');
-    Route::get('/o-nas', 'onas')->name('ogolne.onas');
+    Route::get('/o-nas', 'onas')->name('ogolne.onas')->middleware('auth');
 });
 
 /* Route::get('/', function () {
     return view('welcome');
 }); */
 
-Route::get('/dashboard', function () {
+/* Route::get('/dashboard', function () {
     return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard'); */
+Route::get('/dashboard',function (){
+    return redirect(route('ogolne.start'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
