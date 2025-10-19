@@ -12,12 +12,19 @@
                 </tr>
             </thead>
             <tbody>
+                {{-- @dump($posty) --}}
+                @isset($posty)
+                    @forelse ($posty as $post)
                         <tr>
-                            <th class="border border-gray-300 px-4 py-2" scope="row"></th>
-                            <td class="border border-gray-300 px-4 py-2"></td>
-                            <td class="border border-gray-300 px-4 py-2"></td>
-                            <td class="border border-gray-300 px-4 py-2"></td>
+                            <td class="border border-gray-300 px-4 py-2" scope="row">{{$post->id}}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{$post->tytul}}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{$post->autor}}</td>
+                            <td class="border border-gray-300 px-4 py-2">{{$post->created_at->setTimezone('Europe/Warsaw')->format('j F Y')}}</td>
                         </tr>
+                    @empty
+                        
+                    @endforelse
+                @endisset
             </tbody>
             
 </table>

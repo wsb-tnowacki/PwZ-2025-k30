@@ -32,7 +32,7 @@
         </li>
       </ul>
     </li>
-    @endauth 
+@endauth 
   </ul>
 </nav>
 
