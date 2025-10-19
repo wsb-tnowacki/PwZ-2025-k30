@@ -11,6 +11,15 @@
             @endforeach
         </ol>            
         @endisset
+        @isset($zadania)
+        <ol>
+            @forelse ($tasks as $task)
+                <li>{{$task}}</li>
+            @empty
+                <li>Brak elementów</li>
+            @endforelse
+        </ol>            
+        @endisset
     </div>
 @endsection
 
