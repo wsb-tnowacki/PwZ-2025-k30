@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
+use function Ramsey\Uuid\v1;
+
 class PostController extends Controller
 {
     /**
@@ -33,7 +35,8 @@ class PostController extends Controller
         /* $post->tytul = request('tytul');
         $post->autor = request('autor');
         $post->email = request('email');
-        $post->tresc = request('tresc'); */
+        $post->tresc = request('tresc'); 
+        $post->save()*/
         Post::create($request->all());
        
         return redirect(route('post.index'));
@@ -44,7 +47,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        //return @dump($post);
+        return view('post.post', compact('post'));
     }
 
     /**
@@ -52,7 +56,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+       /*  dump(($post));
+        return "edit id: $post->id"; */
+        return view('post.edytuj', compact('post'));
     }
 
     /**
@@ -60,7 +66,9 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        //return "update id $post->id";
+        $post->update($request->all());
+        return redirect(route('post.index'));
     }
 
     /**
@@ -68,6 +76,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        //return 'destroy';
+        $post->delete();
+        return redirect(route('post.index'));
     }
 }

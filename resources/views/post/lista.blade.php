@@ -14,16 +14,23 @@
             <tbody>
                 {{-- @dump($posty) --}}
                 @isset($posty)
+                    @php($lp =1)
                     @forelse ($posty as $post)
                         <tr>
-                            <td class="border border-gray-300 px-4 py-2" scope="row">{{$post->id}}</td>
-                            <td class="border border-gray-300 px-4 py-2">{{$post->tytul}}</td>
+                            <td class="border border-gray-300 px-4 py-2" scope="row">{{$lp++}}</td>
+                            <td class="border border-gray-300 px-4 py-2"><a href="{{route('post.show',$post->id)}}">{{$post->tytul}}</a></td>
                             <td class="border border-gray-300 px-4 py-2">{{$post->autor}}</td>
                             <td class="border border-gray-300 px-4 py-2">{{$post->created_at->setTimezone('Europe/Warsaw')->format('j F Y')}}</td>
                         </tr>
                     @empty
-                        
+                        <tr>
+                            <td class="border text-center border-gray-300 px-4 py-2" scope="row" colspan="4">Brak postów</td>
+                        </tr>
                     @endforelse
+                    @else
+                    <tr>
+                        <td class="border text-center border-gray-300 px-4 py-2" scope="row" colspan="4">Brak postów</td>
+                    </tr>
                 @endisset
             </tbody>
             
