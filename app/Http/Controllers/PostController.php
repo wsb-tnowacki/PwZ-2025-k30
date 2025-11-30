@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
-
-use function Ramsey\Uuid\v1;
+use Illuminate\Routing\Controller;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +33,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         //$post = new Post();
         /* $post->tytul = request('tytul');
@@ -37,9 +41,20 @@ class PostController extends Controller
         $post->email = request('email');
         $post->tresc = request('tresc'); 
         $post->save()*/
+/*         $request->validate([
+            'tytul' => 'required|max:200',
+            'autor' => 'required|max:100',
+            'email' => [
+                'required',
+                'email:rfc,dns',
+                'min:3',
+                'max:200'
+            ],
+            'tresc' => 'required|min:3',
+        ]); */
         Post::create($request->all());
        
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('message' , "Dodano poprawnie post");
     }
 
     /**
@@ -64,11 +79,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //return "update id $post->id";
         $post->update($request->all());
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('message' , "Post został zmieniony");
     }
 
     /**
@@ -78,6 +93,6 @@ class PostController extends Controller
     {
         //return 'destroy';
         $post->delete();
-        return redirect(route('post.index'));
+        return redirect(route('post.index'))->with('message' , "Post został usunięty")->with('color', 'red');
     }
 }
