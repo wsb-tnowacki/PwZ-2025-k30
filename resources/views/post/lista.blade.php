@@ -17,7 +17,8 @@
             <tbody>
                 {{-- @dump($posty) --}}
                 @isset($posty)
-                    @php($lp =1)
+                    {{-- @php($lp =1) --}}
+                    @php($lp=$posty->firstItem())
                     @forelse ($posty as $post)
                         <tr>
                             <td class="border border-gray-300 px-4 py-2" scope="row">{{$lp++}}</td>
@@ -52,4 +53,5 @@
             </tbody>
             
 </table>
+{{$posty->links()}}
 @endsection

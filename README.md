@@ -31,6 +31,10 @@ Do ściągnięcia nowszych wersji
 
 git pull
 
+By zadziałał Login i Register należy wykonać 
+
+npm run build
+
 
 ## About Laravel
 
